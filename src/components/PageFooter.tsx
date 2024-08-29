@@ -3,7 +3,6 @@ import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
-
 export const PageFooter: React.FC = () => {
   const { title, navigation } = useSiteMetadata();
 
@@ -37,7 +36,7 @@ export const PageFooter: React.FC = () => {
                       {nav.name}
                     </Link>
                   </li>
-                )
+                ),
             )}
           </ul>
         </div>

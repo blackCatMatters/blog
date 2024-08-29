@@ -8,7 +8,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
   const image = data.headerImage
     ? getImage(data.headerImage.childImageSharp)
     : null;
-    
+
   return (
     <PageLayout image={image} title="My Gatsby Blog">
       <div className="container mx-auto px-4 lg:px-0">
@@ -34,7 +34,11 @@ export const pageQuery = graphql`
 `;
 
 export const Head: HeadFC = () => (
-  <><title>Home Page</title><CustomHead
-    title="Home | My Gatsby Blog"
-    description="This is the home page to my blog. You should write a better description." /></>
+  <>
+    <title>Home Page</title>
+    <CustomHead
+      title="Home | My Gatsby Blog"
+      description="This is the home page to my blog. You should write a better description."
+    />
+  </>
 );

@@ -14,9 +14,9 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
     : null;
 
   return (
-    <PageLayout image={image} title="About Us">
+    <PageLayout image={image} title="About our web app agency">
       <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="mb-8 text-4xl font-bold lg:text-5xl">About Us</h1>
+        <h1 className="mb-8 text-4xl font-bold lg:text-5xl">About our web app</h1>
         <span className="text-lg">
           Welcome to our blog's "About" page! We're glad you're here. This page
           is all about us, the people behind the blog. We're passionate about
@@ -34,8 +34,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
             </div>
           )}
           <div className="flex-1 text-lg">
-            Meet John, the tech enthusiast behind our Javascript blog. With over
-            a decade of experience in web development, John has become a
+            Meet Aude, the tech enthusiast behind our Javascript blog. With over
+            a decade of experience in web development, Aude has become a
             seasoned expert in all things Javascript. His passion for coding and
             his love of sharing knowledge have led him to create a blog that
             aims to help people master the art of Javascript and create amazing
@@ -66,9 +66,12 @@ export const pageQuery = graphql`
   }
 `;
 
-
 export const Head: HeadFC = () => (
-  <><title>About Page</title><CustomHead
-    title="Home | My Gatsby Blog"
-    description="This is the home page to my blog. You should write a better description." /></>
+  <>
+    <title>About Page</title>
+    <CustomHead
+      title="Home | My Gatsby Blog"
+      description="This is the home page to my blog. You should write a better description."
+    />
+  </>
 );

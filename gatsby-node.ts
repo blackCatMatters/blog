@@ -10,28 +10,27 @@ exports.createPages = async ({
 
   const BlogPostTemplate = path.resolve('./src/templates/BlogPostTemplate.tsx');
 
-  const result = await graphql<Queries.GatsbyNodeCreatePagesQuery>(
-    `
-      query GatsbyNodeCreatePages {
-        allMdx {
-          nodes {
-            id
-            frontmatter {
-              slug
-            }
-            internal {
-              contentFilePath
-            }
+  const result = await graphql<Queries.GatsbyNodeCreatePagesQuery>(`
+    query GatsbyNodeCreatePages {
+      allMdx {
+        nodes {
+          id
+          frontmatter {
+            slug
+            tags
+          }
+          internal {
+            contentFilePath
           }
         }
       }
-    `
-  );
+    }
+  `);
 
   if (result.errors) {
     reporter.panicOnBuild(
       'There was an error loading the MDX result',
-      result.errors
+      result.errors,
     );
   }
 
