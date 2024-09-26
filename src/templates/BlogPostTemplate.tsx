@@ -25,7 +25,8 @@ const BlogPostTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({
         </h1>
         <div className="mb-8">
           <span className="text-sm font-thin">
-            By {data.mdx?.frontmatter?.author} on {data.mdx?.frontmatter?.date} - {data.mdx?.frontmatter?.time} min read
+            By {data.mdx?.frontmatter?.author} on {data.mdx?.frontmatter?.date}{' '}
+            - {data.mdx?.frontmatter?.time} min read
           </span>
         </div>
         <MDXProvider components={components}>{children}</MDXProvider>
@@ -50,6 +51,7 @@ export const query = graphql`
             gatsbyImageData(layout: FULL_WIDTH)
           }
         }
+        tags
       }
     }
   }

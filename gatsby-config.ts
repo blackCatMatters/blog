@@ -2,10 +2,11 @@ import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `My Gatsby Blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `A Blog by a woman in tech`,
+    siteUrl: `https://www.blackcatmatters.com`,
+    author: 'Aude Falco',
     description:
-      'Follow my journey building a stunning and performant blog with GatsbyJS! Get tips and insights on web development, design, and more.',
+      'Follow my journey as a woman in tech and insights on web development, design, and more.',
     image: 'default.jpg',
     navigation: [
       {
@@ -41,6 +42,13 @@ const config: GatsbyConfig = {
       __key: 'images',
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `./src/content`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.md', '.mdx'],
@@ -70,8 +78,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://<your-domain>',
-        sitemap: 'https://<your-domain>/sitemap-index.xml',
+        host: 'https://blackcatmatters.com',
+        sitemap: 'https://blackcatmatters.com/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },

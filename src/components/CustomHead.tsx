@@ -29,7 +29,7 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
   const {
     title: siteTitle,
     description: siteDescription,
-    // image: siteImage,
+    image: siteImage,
     siteUrl,
     // author: siteAuthor,
   } = useSiteMetadata();
@@ -69,7 +69,7 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
         </>
       ) : (
         <>
-          <meta property="og:image" content={`${siteUrl}/${image}`} />
+          <meta property="og:image" content={`${siteUrl}/${siteImage}`} />
           <meta name="twitter:card" content="summary" />
         </>
       )}
