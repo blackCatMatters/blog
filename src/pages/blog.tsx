@@ -9,44 +9,45 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
-    return (
-      <PageLayout image={image} title="Aude In Tech">
-        <h1 className="mb-8 text-center text-4xl font-bold sm:text-5xl">
-          Latest Articles
-        </h1>
-        <ul className="mx-auto max-w-4xl p-4 sm:p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {data.allMdx.edges.map(({ node }) => (
-            <li key={node.id} className="h-auto">
-              <Link
-                to={`/blog/${node.frontmatter?.slug}`}
-                className="block overflow-hidden rounded-lg border border-gray-400"
-              >
-                <div className="w-full h-30">
-                  {node.frontmatter?.featuredImage && (
-                    <GatsbyImage
-                      image={getImage(node.frontmatter.featuredImage.childImageSharp)!}
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  )}
-                </div>
-                <div className="p-6">
-                  <h2 className="mb-4 text-xl font-bold">
-                    {node.frontmatter?.title}
-                  </h2>
-                  <span className="mb-4 block text-sm font-thin">
-                    By {node.frontmatter?.author} on {node.frontmatter?.date} -{' '}
-                    {node.frontmatter?.time} min read
-                  </span>
-                  <span className="block text-lg">{node.excerpt}</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </PageLayout>
-    );
-    
+  return (
+    <PageLayout image={image} title="Aude In Tech">
+      <h1 className="mb-8 text-center text-4xl font-bold sm:text-5xl">
+        Latest Articles
+      </h1>
+      <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-12 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3">
+        {data.allMdx.edges.map(({ node }) => (
+          <li key={node.id} className="h-auto">
+            <Link
+              to={`/blog/${node.frontmatter?.slug}`}
+              className="block overflow-hidden rounded-lg border border-gray-400"
+            >
+              <div className="h-30 w-full">
+                {node.frontmatter?.featuredImage && (
+                  <GatsbyImage
+                    image={
+                      getImage(node.frontmatter.featuredImage.childImageSharp)!
+                    }
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+              <div className="p-6">
+                <h2 className="mb-4 text-xl font-bold">
+                  {node.frontmatter?.title}
+                </h2>
+                <span className="mb-4 block text-sm font-thin">
+                  By {node.frontmatter?.author} on {node.frontmatter?.date} -{' '}
+                  {node.frontmatter?.time} min read
+                </span>
+                <span className="block text-lg">{node.excerpt}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </PageLayout>
+  );
 };
 
 export default BlogPage;

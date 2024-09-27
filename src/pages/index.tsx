@@ -12,7 +12,9 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
   return (
     <PageLayout image={image} title="Solution engineering by BCM">
       <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="my-8 text-4xl font-bold lg:text-5xl">We are designing Enterprise Softwares</h1>
+        <h1 className="my-8 text-4xl font-bold lg:text-5xl">
+          We are designing Enterprise Softwares
+        </h1>
         <span className="text-lg">Contact Us. We also are on Malt.</span>
       </div>
     </PageLayout>

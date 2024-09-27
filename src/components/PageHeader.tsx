@@ -5,7 +5,6 @@ import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 export const PageHeader: React.FC = () => {
   const { title, navigation } = useSiteMetadata();
-  console.log('useSiteMetadata', useSiteMetadata)
   return (
     <header className="bg-white">
       <div className="container mx-auto flex max-w-5xl items-center justify-between py-6">
