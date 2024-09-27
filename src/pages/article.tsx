@@ -18,7 +18,7 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
         {data.allMdx.edges.map(({ node }) => (
           <li key={node.id} className="h-auto">
             <Link
-              to={`/blog/${node.frontmatter?.slug}`}
+              to={`/article/${node.frontmatter?.slug}`}
               className="block overflow-hidden rounded-lg border border-gray-400"
             >
               <div className="h-30 w-full">

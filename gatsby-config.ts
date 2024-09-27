@@ -1,6 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
+  pathPrefix: '/blog',
   siteMetadata: {
     title: `A Blog by a woman in tech`,
     siteUrl: `https://www.blackcatmatters.com`,
@@ -14,8 +15,8 @@ const config: GatsbyConfig = {
         path: '/about',
       },
       {
-        name: 'Blog',
-        path: '/blog',
+        name: 'Article',
+        path: '/article',
       },
     ],
   },
@@ -71,7 +72,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'blog',
+        name: 'article',
         path: './src/content',
       },
     },
