@@ -15,7 +15,14 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
         <h1 className="my-8 text-4xl font-bold lg:text-5xl">
           We are designing Enterprise Softwares
         </h1>
-        <span className="text-lg">Contact Us. We also are on Malt.</span>
+        <p>
+          <a href="mailto:contact@blackcatmatters.com"> Contact Us</a>. We also
+          are on
+          <a href="https://www.malt.fr/profile/audefalco/"> Malt.</a>
+        </p>
+        <p>Do not hesitate to contact us to discuss your projects.</p>
+        <p>We will be in touch quickly!</p>
+        <p>We are based in France but we can work with you remotely any time</p>
       </div>
     </PageLayout>
   );

@@ -25,7 +25,9 @@ export const PageHeader: React.FC = () => {
             </span>
           </Link>
         )}
-        <nav className="flex w-full items-center justify-between text-sm sm:w-auto">
+      </div>
+      <div className="flex w-full items-center justify-between text-sm sm:w-auto">
+        <nav>
           <ul className="flex justify-between px-2 sm:px-0">
             {navigation?.map(
               (nav) =>

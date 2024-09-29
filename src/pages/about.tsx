@@ -5,6 +5,7 @@ import { PageLayout } from '../components/PageLayout';
 import { CustomHead } from '../components/CustomHead';
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
+
   const profileImage = data.profileImage
     ? getImage(data.profileImage.childImageSharp)
     : null;
@@ -13,11 +14,14 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
+ 
+
+
   return (
-    <PageLayout image={image} title="About our web app agency">
+    <PageLayout image={image} title="">
       <div className="container mx-auto px-4 lg:px-0">
         <h1 className="mb-8 text-4xl font-bold lg:text-5xl">
-          About our web app
+          About the team
         </h1>
         <span className="text-lg">
           Welcome to our blog's "About" page! We're glad you're here. This page
@@ -37,7 +41,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
           )}
           <div className="flex-1 text-lg">
             Meet Aude, the tech enthusiast behind our Javascript blog. With over
-            a decade of experience in web development, Aude has become a
+            a 5 years of experience in web development, Aude has become a
             seasoned expert in all things Javascript. His passion for coding and
             his love of sharing knowledge have led him to create a blog that
             aims to help people master the art of Javascript and create amazing
