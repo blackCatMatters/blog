@@ -1,7 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
-  pathPrefix: '/blog',
+  // pathPrefix: '/blog',
   siteMetadata: {
     title: `A Blog by a woman in tech`,
     siteUrl: `https://www.blackcatmatters.com`,
