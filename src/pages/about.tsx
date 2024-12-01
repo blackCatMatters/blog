@@ -5,7 +5,6 @@ import { PageLayout } from '../components/PageLayout';
 import { CustomHead } from '../components/CustomHead';
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
-
   const profileImage = data.profileImage
     ? getImage(data.profileImage.childImageSharp)
     : null;
@@ -14,15 +13,10 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
- 
-
-
   return (
     <PageLayout image={image} title="">
       <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="mb-8 text-4xl font-bold lg:text-5xl">
-          About the team
-        </h1>
+        <h1 className="mb-8 text-4xl font-bold lg:text-5xl">About the team</h1>
         <span className="text-lg">
           Welcome to our blog's "About" page! We're glad you're here. This page
           is all about us, the people behind the blog. We're passionate about
