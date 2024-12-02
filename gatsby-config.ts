@@ -5,7 +5,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `A Blog by a woman in tech`,
     siteUrl: `https://www.blackcatmatters.com`,
-    author: 'Aude Falco',
+    author: 'AF',
     description:
       'Follow my journey as a woman in tech and insights on web development, design, and more.',
     image: 'default.jpg',

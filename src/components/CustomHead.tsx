@@ -59,7 +59,7 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
       <meta property="og:locale" content={lang} />
       <meta name="twitter:creator" content={author} />
       <meta name="twitter:site" content={author} />
-      <meta name="tiwtter:url" content={canonicalUrl} />
+      <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {image ? (
@@ -73,7 +73,7 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
           <meta name="twitter:card" content="summary" />
         </>
       )}
-      {noindex && <meta name="googlebot" content="noindex, nofollow" />}
+      {noindex && <meta name="google" content="noindex, nofollow" />}
       {children}
     </>
   );
