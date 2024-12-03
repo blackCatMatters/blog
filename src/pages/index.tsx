@@ -5,12 +5,12 @@ import { PageLayout } from '../components/PageLayout';
 import { CustomHead } from '../components/CustomHead';
 
 const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
-  const image = data.headerImage
+  const headerImage = data.headerImage
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
   return (
-    <PageLayout image={image} title="Solution engineering by BCM">
+    <PageLayout image={headerImage} title="">
       <div className="container mx-auto px-4 lg:px-0 text-center">
       <h1 className="my-6 text-3xl font-bold lg:text-4xl">
         Crafting Tailored Enterprise Software Solutions
@@ -53,9 +53,11 @@ export default IndexPage;
 // pages. The data will be passed to our page component as a `data` property.
 export const pageQuery = graphql`
   query IndexPage {
-    headerImage: file(relativePath: { eq: "header.jpg" }) {
+    headerImage: file(relativePath: { eq: "header.jpeg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(quality: 90
+          width: 200
+          layout: CONSTRAINED)
       }
     }
   }

@@ -9,12 +9,12 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
     ? getImage(data.profileImage.childImageSharp)
     : null;
 
-  const image = data.headerImage
+  const headerImage = data.headerImage
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
   return (
-    <PageLayout image={image} title="">
+    <PageLayout image={headerImage} title="">
       <div className="container mx-auto px-4 lg:px-0">
         <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">About the team</h1>
         <span className="text-lg">
@@ -53,14 +53,16 @@ export default AboutPage;
 // as the `data` property to the exported `AboutPage` above.
 export const pageQuery = graphql`
   query AboutPage {
-    profileImage: file(relativePath: { eq: "profile.jpg" }) {
+    profileImage: file(relativePath: { eq: "profile.jpeg" }) {
       childImageSharp {
         gatsbyImageData(layout: FULL_WIDTH)
       }
     }
-    headerImage: file(relativePath: { eq: "header.jpg" }) {
+    headerImage: file(relativePath: { eq: "header.jpeg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(quality: 90
+          width: 200
+          layout: CONSTRAINED)
       }
     }
   }

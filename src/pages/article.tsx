@@ -5,12 +5,12 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { CustomHead } from '../components/CustomHead';
 
 const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
-  const image = data.headerImage
+  const headerImage = data.headerImage
     ? getImage(data.headerImage.childImageSharp)
     : null;
 
   return (
-    <PageLayout image={image} title="Aude In Tech">
+    <PageLayout image={headerImage} title="">
       <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">Latest articles</h1>
       <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-12 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3">
         {data.allMdx.edges.map(({ node }) => (
@@ -73,9 +73,11 @@ export const query = graphql`
         }
       }
     }
-    headerImage: file(relativePath: { eq: "header.jpg" }) {
+    headerImage: file(relativePath: { eq: "header.jpeg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(quality: 90
+          width: 200
+          layout: CONSTRAINED)
       }
     }
   }
