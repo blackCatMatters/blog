@@ -4,7 +4,7 @@ const config: GatsbyConfig = {
   // pathPrefix: '/blog',
   siteMetadata: {
     title: `A Blog by a woman in tech`,
-    siteUrl: `https://www.blackcatmatters.com`,
+    siteUrl: `https://blog.blackcatmatters.com`,
     author: 'AF',
     description:
       'Follow my journey as a woman in tech and insights on web development, design, and more.',
@@ -79,8 +79,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://blackcatmatters.com',
-        sitemap: 'https://blackcatmatters.com/sitemap-index.xml',
+        host: 'https://blog.blackcatmatters.com',
+        sitemap: 'https://blog.blackcatmatters.com/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },

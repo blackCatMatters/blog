@@ -18,8 +18,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
       <div className="container mx-auto px-4 lg:px-0">
         <h1 className="mb-8 text-4xl font-bold lg:text-5xl">About the team</h1>
         <span className="text-lg">
-          Welcome to our blog's "About" page! We're glad you're here. This page
-          is all about us, the people behind the blog. We're passionate about
+          Welcome to our blog's "About" page! We are glad you ere here. This page
+          is all about us, the people behind the blog. We are passionate about
           sharing our knowledge, opinions, and experiences with the world, and
           we hope you find our content informative and enjoyable.
         </span>
@@ -36,8 +36,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
           <div className="flex-1 text-lg">
             Meet Aude, the tech enthusiast behind our Javascript blog. With over
             a 5 years of experience in web development, Aude has become a
-            seasoned expert in all things Javascript. His passion for coding and
-            his love of sharing knowledge have led him to create a blog that
+            seasoned expert in all things Javascript. Her passion for coding and
+            her love of sharing knowledge have led her to create a blog that
             aims to help people master the art of Javascript and create amazing
             web experiences.
           </div>
