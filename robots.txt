@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://blackcatmatters.com/sitemap-index.xml
-Host: https://blackcatmatters.com
+Sitemap: https://blog.blackcatmatters.com/sitemap-index.xml
+Host: https://blog.blackcatmatters.com
