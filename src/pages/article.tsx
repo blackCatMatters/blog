@@ -11,7 +11,9 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
 
   return (
     <PageLayout image={headerImage} title="">
-      <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">Latest articles</h1>
+      <h1 className="my-6 text-center text-3xl font-bold lg:text-4xl">
+        Latest articles
+      </h1>
       <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-12 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3">
         {data.allMdx.edges.map(({ node }) => (
           <li key={node.id} className="h-auto">
@@ -75,9 +77,7 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { eq: "header.jpeg" }) {
       childImageSharp {
-        gatsbyImageData(quality: 90
-          width: 200
-          layout: CONSTRAINED)
+        gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
       }
     }
   }

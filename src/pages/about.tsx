@@ -16,12 +16,14 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
   return (
     <PageLayout image={headerImage} title="">
       <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">About the team</h1>
+        <h1 className="my-6 text-center text-3xl font-bold lg:text-4xl">
+          About the team
+        </h1>
         <span className="text-lg">
-          Welcome to our blog's "About" page! We are glad you ere here. This page
-          is all about us, the people behind the blog. We are passionate about
-          sharing our knowledge, opinions, and experiences with the world, and
-          we hope you find our content informative and enjoyable.
+          Welcome to our blog's "About" page! We are glad you ere here. This
+          page is all about us, the people behind the blog. We are passionate
+          about sharing our knowledge, opinions, and experiences with the world,
+          and we hope you find our content informative and enjoyable.
         </span>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
           {profileImage && (
@@ -60,9 +62,7 @@ export const pageQuery = graphql`
     }
     headerImage: file(relativePath: { eq: "header.jpeg" }) {
       childImageSharp {
-        gatsbyImageData(quality: 90
-          width: 200
-          layout: CONSTRAINED)
+        gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
       }
     }
   }
