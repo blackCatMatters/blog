@@ -11,9 +11,7 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
 
   return (
     <PageLayout image={image} title="Aude In Tech">
-      <h1 className="mb-8 text-center text-4xl font-bold sm:text-5xl">
-        Latest Articles
-      </h1>
+      <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">Latest articles</h1>
       <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-12 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3">
         {data.allMdx.edges.map(({ node }) => (
           <li key={node.id} className="h-auto">

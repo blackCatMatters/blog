@@ -16,7 +16,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
   return (
     <PageLayout image={image} title="">
       <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="mb-8 text-4xl font-bold lg:text-5xl">About the team</h1>
+        <h1 className="my-6 text-3xl font-bold lg:text-4xl text-center">About the team</h1>
         <span className="text-lg">
           Welcome to our blog's "About" page! We are glad you ere here. This page
           is all about us, the people behind the blog. We are passionate about

@@ -20,9 +20,6 @@ const BlogPostTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({
       title={data.mdx?.frontmatter?.title ?? undefined}
     >
       <MainContent>
-        <h1 className="mb-8 text-4xl font-bold sm:text-5xl">
-          {data.mdx?.frontmatter?.title}
-        </h1>
         <div className="mb-8">
           <span className="text-sm font-thin">
             By {data.mdx?.frontmatter?.author} on {data.mdx?.frontmatter?.date}{' '}
