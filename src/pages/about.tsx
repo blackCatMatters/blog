@@ -55,12 +55,12 @@ export default AboutPage;
 // as the `data` property to the exported `AboutPage` above.
 export const pageQuery = graphql`
   query AboutPage {
-    profileImage: file(relativePath: { eq: "profile.jpeg" }) {
+    profileImage: file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: FULL_WIDTH)
       }
     }
-    headerImage: file(relativePath: { eq: "header.jpeg" }) {
+    headerImage: file(relativePath: { eq: "header.jpg" }) {
       childImageSharp {
         gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
       }

@@ -75,7 +75,7 @@ export const query = graphql`
         }
       }
     }
-    headerImage: file(relativePath: { eq: "header.jpeg" }) {
+    headerImage: file(relativePath: { eq: "header.jpg" }) {
       childImageSharp {
         gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
       }
