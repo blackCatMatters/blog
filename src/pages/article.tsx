@@ -14,14 +14,14 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
       <h1 className="my-6 text-center text-3xl font-bold lg:text-4xl">
         Latest articles
       </h1>
-      <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-12 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3">
+      <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-9 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-2">
         {data.allMdx.edges.map(({ node }) => (
-          <li key={node.id} className="h-auto">
+          <li key={node.id} className="h-full">
             <Link
               to={`/article/${node.frontmatter?.slug}`}
-              className="block overflow-hidden rounded-lg border border-gray-400"
+              className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-400"
             >
-              <div className="h-30 w-full">
+              <div className="h-48 w-full">
                 {node.frontmatter?.featuredImage && (
                   <GatsbyImage
                     image={
@@ -32,8 +32,8 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
                   />
                 )}
               </div>
-              <div className="p-6">
-                <h2 className="mb-4 text-xl font-bold">
+              <div className="flex flex-1 flex-col p-6">
+                <h2 className="mb-4 line-clamp-2 text-xl font-bold">
                   {node.frontmatter?.title}
                 </h2>
                 <span className="mb-4 block text-sm font-thin">
