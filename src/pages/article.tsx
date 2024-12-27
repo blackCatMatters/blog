@@ -14,14 +14,14 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
       <h1 className="my-6 text-center text-3xl font-bold lg:text-4xl">
         Latest articles
       </h1>
-      <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-9 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-2">
+      <ul className="max-w-8xl mx-auto grid auto-rows-fr grid-cols-1 gap-10 p-4 sm:grid-cols-2 sm:p-0 lg:grid-cols-3 xl:grid-cols-4">
         {data.allMdx.edges.map(({ node }) => (
-          <li key={node.id} className="h-full">
+          <li key={node.id} className="h-full min-w-[280px]">
             <Link
               to={`/article/${node.frontmatter?.slug}`}
-              className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-400"
+              className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-200"
             >
-              <div className="h-48 w-full">
+              <div className="h-48 w-full p-[15px]">
                 {node.frontmatter?.featuredImage && (
                   <GatsbyImage
                     image={
@@ -67,7 +67,12 @@ export const query = graphql`
             slug
             featuredImage {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
+                gatsbyImageData(
+                  layout: CONSTRAINED
+                  width: 1000
+                  quality: 90
+                  aspectRatio: 1.5
+                )
               }
             }
             tags
@@ -77,7 +82,7 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { eq: "header.jpg" }) {
       childImageSharp {
-        gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
+        gatsbyImageData(quality: 90, width: 1920, layout: CONSTRAINED)
       }
     }
   }

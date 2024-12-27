@@ -39,7 +39,9 @@ export const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
           <div className="absolute inset-0 z-10 bg-gray-900 opacity-30" />
         </div>
       )}
-      <div className="mx-auto mb-12 max-w-5xl">{children}</div>
+      <div className="mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
       <PageFooter />
     </main>
   );
