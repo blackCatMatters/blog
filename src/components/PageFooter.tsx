@@ -7,7 +7,7 @@ export const PageFooter: React.FC = () => {
   const { title, navigation } = useSiteMetadata();
 
   return (
-    <footer className="bottom-0 bg-purple-200">
+    <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
       <div className="container mx-auto flex max-w-5xl flex-col justify-evenly py-12 sm:flex-row">
         <div className="mb-12 sm:mb-0">
           {title && (

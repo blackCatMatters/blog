@@ -19,7 +19,7 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
           <li key={node.id} className="h-full min-w-[280px]">
             <Link
               to={`/article/${node.frontmatter?.slug}`}
-              className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-200"
+              className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
             >
               <div className="h-48 w-full p-[15px]">
                 {node.frontmatter?.featuredImage && (
@@ -28,19 +28,21 @@ const BlogPage: React.FC<PageProps<Queries.BlogPageQuery>> = ({ data }) => {
                       getImage(node.frontmatter.featuredImage.childImageSharp)!
                     }
                     alt=""
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
                   />
                 )}
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <h2 className="mb-4 line-clamp-2 text-xl font-bold">
+                <h2 className="mb-4 line-clamp-2 text-xl font-bold text-gray-900 dark:text-gray-100">
                   {node.frontmatter?.title}
                 </h2>
-                <span className="mb-4 block text-sm font-thin">
+                <span className="mb-4 block text-sm font-thin text-gray-600 dark:text-gray-400">
                   By {node.frontmatter?.author} on {node.frontmatter?.date} -{' '}
                   {node.frontmatter?.time} min read
                 </span>
-                <span className="block text-lg">{node.excerpt}</span>
+                <span className="block text-lg text-gray-700 dark:text-gray-300">
+                  {node.excerpt}
+                </span>
               </div>
             </Link>
           </li>

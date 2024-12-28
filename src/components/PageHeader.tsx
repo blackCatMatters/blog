@@ -12,7 +12,7 @@ export const PageHeader: React.FC = () => {
   };
 
   return (
-    <header className="bg-white">
+    <header className="bg-white shadow-sm dark:bg-gray-900 dark:shadow-gray-800">
       <div className="container mx-auto flex max-w-5xl items-center justify-between py-6">
         {title && (
           <Link
@@ -39,7 +39,10 @@ export const PageHeader: React.FC = () => {
               (nav) =>
                 nav?.path && (
                   <li key={nav.path}>
-                    <Link to={nav.path} className="hover:text-gray-600">
+                    <Link
+                      to={nav.path}
+                      className="hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+                    >
                       {nav.name}
                     </Link>
                   </li>
@@ -71,7 +74,7 @@ export const PageHeader: React.FC = () => {
                   <li key={nav.path}>
                     <Link
                       to={nav.path}
-                      className="hover:text-gray-600"
+                      className="hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
                       onClick={toggleMenu} // Close menu on link click
                     >
                       {nav.name}

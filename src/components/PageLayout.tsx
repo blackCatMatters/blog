@@ -2,6 +2,7 @@ import React from 'react';
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { PageHeader } from './PageHeader';
 import { PageFooter } from './PageFooter';
+import { DarkModeToggle } from './DarkModeToggle';
 
 interface PageLayoutProps {
   image?: IGatsbyImageData | null;
@@ -16,7 +17,10 @@ export const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
   const heroImage = image ? getImage(image) : null;
 
   return (
-    <main className="font-sans font-light">
+    <main className="min-h-screen bg-white font-sans font-light text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <div className="fixed right-4 top-4 z-50">
+        <DarkModeToggle />
+      </div>
       <PageHeader />
       {heroImage && (
         <div className="relative mb-12 h-48">
