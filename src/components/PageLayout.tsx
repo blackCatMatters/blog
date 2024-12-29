@@ -18,10 +18,9 @@ export const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
 
   return (
     <main className="min-h-screen bg-white font-sans font-light text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      <div className="fixed right-4 top-4 z-50">
+      <PageHeader>
         <DarkModeToggle />
-      </div>
-      <PageHeader />
+      </PageHeader>
       {heroImage && (
         <div className="relative mb-12 h-48">
           <GatsbyImage

@@ -3,7 +3,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
-export const PageHeader: React.FC = () => {
+export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { title, navigation } = useSiteMetadata();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -63,6 +63,8 @@ export const PageHeader: React.FC = () => {
             <span className="text-2xl">☰</span>
           )}
         </button>
+
+        {children}
       </div>
 
       {isMenuOpen && (

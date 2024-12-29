@@ -20,7 +20,7 @@ export const PageFooter: React.FC = () => {
                 src="../images/icon.png"
                 alt={title}
               />
-              <span className="text-xl font-bold uppercase text-black">
+              <span className="text-xl font-bold uppercase text-black dark:text-gray-100">
                 {title}
               </span>
             </div>

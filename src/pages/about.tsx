@@ -20,7 +20,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
           About the team
         </h1>
         <span className="text-lg">
-          Welcome to our blog's "About" page! We are glad you ere here. This
+          Welcome to our blog's "About" page! We are glad you are here. This
           page is all about us, the people behind the blog. We are passionate
           about sharing our knowledge, opinions, and experiences with the world,
           and we hope you find our content informative and enjoyable.

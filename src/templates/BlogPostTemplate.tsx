@@ -21,7 +21,7 @@ const BlogPostTemplate: React.FC<PageProps<Queries.BlogPostQuery>> = ({
     >
       <MainContent>
         <div className="mb-8">
-          <span className="text-sm font-thin">
+          <span className="text-sm font-thin dark:text-gray-100">
             By {data.mdx?.frontmatter?.author} on {data.mdx?.frontmatter?.date}{' '}
             - {data.mdx?.frontmatter?.time} min read
           </span>
