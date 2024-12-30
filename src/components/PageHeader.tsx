@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
+import { DarkModeToggle } from './DarkModeToggle';
 
 export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { title, navigation } = useSiteMetadata();
@@ -13,6 +14,7 @@ export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <header className="bg-white shadow-sm dark:bg-gray-900 dark:shadow-gray-800">
+      <DarkModeToggle />
       <div className="container mx-auto flex max-w-5xl items-center justify-between py-6">
         {title && (
           <Link
@@ -68,7 +70,7 @@ export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
       </div>
 
       {isMenuOpen && (
-        <nav className="bg-white shadow-lg md:hidden">
+        <nav className="bg-white shadow-lg dark:bg-gray-900 md:hidden">
           <ul className="flex flex-col items-center space-y-4 py-4">
             {navigation?.map(
               (nav) =>
@@ -77,7 +79,7 @@ export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
                     <Link
                       to={nav.path}
                       className="hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
-                      onClick={toggleMenu} // Close menu on link click
+                      onClick={toggleMenu}
                     >
                       {nav.name}
                     </Link>
