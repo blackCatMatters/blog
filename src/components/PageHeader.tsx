@@ -14,7 +14,9 @@ export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <header className="bg-white shadow-sm dark:bg-gray-900 dark:shadow-gray-800">
-      <DarkModeToggle />
+      <div className="absolute left-1/2 right-auto top-12 -translate-x-1/2 sm:left-auto sm:right-4 sm:top-4 sm:translate-x-0">
+        <DarkModeToggle />
+      </div>
       <div className="container mx-auto flex max-w-5xl items-center justify-between py-6">
         {title && (
           <Link
