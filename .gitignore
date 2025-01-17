@@ -4,5 +4,6 @@ public
 src/gatsby-types.d.ts
 
 .D_Store
+.DS_Store
 .DS_Store?
 **/.DS_Store
