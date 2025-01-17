@@ -84,6 +84,13 @@ const config: GatsbyConfig = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
+    'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        precachePages: [`/`, `/blog/*`],
+      },
+    },
   ],
 };
 
