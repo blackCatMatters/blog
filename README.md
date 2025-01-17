@@ -1,49 +1,61 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
-
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+2.  **Install dependencies.**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+    Navigate into your new site's directory and install dependencies.
 
     ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
+    cd blog/
+    yarn
     ```
 
-2.  **Start developing.**
+3.  **Start developing.**
 
-    Navigate into your new site’s directory and start it up.
+    Start the development server.
 
     ```shell
-    cd my-gatsby-site/
+    npm start
+    # or
     npm run develop
     ```
 
-3.  **Open the code and start customizing!**
+4.  **Open the code and start customizing!**
 
     Your site is now running at http://localhost:8000!
 
     Edit `src/pages/index.tsx` to see your site update in real-time!
 
-4.  **Learn more**
+5.  **Build for production**
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    When you're ready to deploy, create a production build.
 
-## 🚀 Quick start (Netlify)
+    ```shell
+    npm run build
+    ```
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+## 🧐 What's inside
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+A quick look at the available npm scripts:
+
+- `npm start` or `npm run develop`: Start the development server
+- `npm run build`: Build your site for production
+- `npm run serve`: Serve the production build locally
+- `npm run clean`: Clear the cache and public directories
+- `npm run typecheck`: Run TypeScript type checking
+- `npm run format`: Format code using Prettier
+- `npm run lint`: Run ESLint to check code
+- `npm run lint:fix`: Automatically fix linting issues
+- `npm run deploy`: Deploy to GitHub Pages
+
+## 📦 Deployment
+
+To deploy your site to GitHub Pages:
+
+1. Make sure your repository is configured for GitHub Pages
+2. Run the deploy command:
+
+```shell
+npm run deploy
+```
+
+This will build your site and deploy it to the `gh-pages` branch of your repository.
