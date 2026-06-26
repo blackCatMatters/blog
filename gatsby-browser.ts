@@ -1,13 +1,15 @@
-import '@fontsource/roboto/100-italic.css';
-import '@fontsource/roboto/100.css';
-import '@fontsource/roboto/300-italic.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400-italic.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500-italic.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700-italic.css';
-import '@fontsource/roboto/700.css';
-import '@fontsource/roboto/900-italic.css';
-import '@fontsource/roboto/900.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/source-serif-4/600.css';
+import '@fontsource/source-serif-4/700.css';
 import './src/styles/global.css';
+
+export const onClientEntry = () => {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  }
+};

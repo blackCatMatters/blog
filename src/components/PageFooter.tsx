@@ -4,40 +4,63 @@ import React from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 export const PageFooter: React.FC = () => {
-  const { title, navigation } = useSiteMetadata();
+  const { title, navigation, author } = useSiteMetadata();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
-      <div className="container mx-auto flex max-w-5xl flex-col justify-evenly py-12 sm:flex-row">
-        <div className="mb-12 sm:mb-0">
+    <footer className="mt-16 border-t border-stone-200 bg-stone-50 dark:border-stone-800 dark:bg-stone-950">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-8">
+        <div className="space-y-3">
           {title && (
-            <div className="mb-4 flex items-center justify-center gap-4 sm:-ml-6">
+            <div className="flex items-center gap-3">
               <StaticImage
-                className="inline-block"
-                layout="fixed"
-                height={20}
-                width={20}
                 src="../images/icon.png"
-                alt={title}
+                alt="BlackCatMatters logo"
+                layout="fixed"
+                height={28}
+                width={28}
+                className="rounded-md"
               />
-              <span className="text-xl font-bold uppercase text-black dark:text-gray-100">
+              <span className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-50">
                 {title}
               </span>
             </div>
           )}
+          <p className="max-w-sm text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+            Personal writing on tech, freelancing, and building software — by{' '}
+            {author || 'Aude Falco'}.
+          </p>
+          <p className="text-xs text-stone-500 dark:text-stone-500">
+            © {year} {title}. All rights reserved.
+          </p>
         </div>
-        <div className="text-center sm:text-left">
-          <ul className="flex flex-col items-center gap-4 sm:flex-row">
+
+        <div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-stone-500">
+            Explore
+          </p>
+          <ul className="flex flex-col gap-2">
             {navigation?.map(
               (nav) =>
                 nav?.path && (
                   <li key={nav.path}>
-                    <Link className="underline" to={nav.path}>
+                    <Link
+                      to={nav.path}
+                      className="text-sm text-stone-700 hover:text-teal-700 dark:text-stone-300 dark:hover:text-teal-300"
+                    >
                       {nav.name}
                     </Link>
                   </li>
                 ),
             )}
+            <li>
+              <a
+                href="/rss.xml"
+                className="text-sm text-stone-700 hover:text-teal-700 dark:text-stone-300 dark:hover:text-teal-300"
+              >
+                RSS feed
+              </a>
+            </li>
           </ul>
         </div>
       </div>

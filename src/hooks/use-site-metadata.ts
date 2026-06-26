@@ -9,6 +9,9 @@ export const useSiteMetadata = () => {
         siteMetadata {
           title
           siteUrl
+          author
+          description
+          image
           navigation {
             name
             path

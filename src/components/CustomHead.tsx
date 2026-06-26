@@ -1,6 +1,7 @@
 import { useLocation } from '@reach/router';
 import React from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
+import { JsonLd } from './JsonLd';
 
 interface CustomHeadProps {
   description?: string;
@@ -12,7 +13,24 @@ interface CustomHeadProps {
   nonCanonical?: boolean;
   author?: string;
   noindex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: readonly (string | null)[] | null;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
+
+const toAbsoluteUrl = (siteUrl: string, path?: string | null) => {
+  if (!path) {
+    return undefined;
+  }
+
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${siteUrl}${normalizedPath}`;
+};
 
 export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
   description: propDescription,
@@ -24,6 +42,10 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
   nonCanonical = false,
   author: propAuthor,
   noindex = false,
+  publishedTime,
+  modifiedTime,
+  tags,
+  jsonLd,
   children,
 }) => {
   const {
@@ -31,49 +53,55 @@ export const CustomHead: React.FC<React.PropsWithChildren<CustomHeadProps>> = ({
     description: siteDescription,
     image: siteImage,
     siteUrl,
-    // author: siteAuthor,
+    author: siteAuthor,
   } = useSiteMetadata();
 
-  // By default, we will construct the canonical path ourselves, but this can
-  // be overwritten via the component properties
   const { pathname } = useLocation();
-  const defaultCanonicalPath = `${siteUrl}${pathname}`;
-  const canonicalUrl = propCanonicalPath || defaultCanonicalPath;
-
-  const siteName = siteTitle || 'My Gatsby Blog';
-  const title = propTitle;
+  const canonicalUrl = propCanonicalPath || `${siteUrl}${pathname}`;
+  const pageTitle = propTitle || siteTitle || 'BlackCatMatters';
   const description = propDescription || siteDescription || '';
   const lang = propLang || 'en_US';
-  const author = propAuthor || '';
+  const author = propAuthor || siteAuthor || '';
+  const ogImage = toAbsoluteUrl(siteUrl || '', image || siteImage || undefined);
+  const visibleTags = tags?.filter(Boolean) as string[] | undefined;
 
   return (
     <>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
       {!nonCanonical && <link rel="canonical" href={canonicalUrl} />}
       <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
+      {author && <meta name="author" content={author} />}
+      <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={article ? 'article' : 'website'} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:site_name" content={siteName} />
+      <meta property="og:site_name" content={siteTitle || 'BlackCatMatters'} />
       <meta property="og:locale" content={lang} />
-      <meta name="twitter:creator" content={author} />
-      <meta name="twitter:site" content={author} />
-      <meta name="twitter:url" content={canonicalUrl} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      {image ? (
+      {ogImage && (
         <>
-          <meta property="og:image" content={`${siteUrl}${image}`} />
+          <meta property="og:image" content={ogImage} />
+          <meta name="twitter:image" content={ogImage} />
           <meta name="twitter:card" content="summary_large_image" />
         </>
-      ) : (
-        <>
-          <meta property="og:image" content={`${siteUrl}/${siteImage}`} />
-          <meta name="twitter:card" content="summary" />
-        </>
       )}
-      {noindex && <meta name="google" content="noindex, nofollow" />}
+      {!ogImage && <meta name="twitter:card" content="summary" />}
+      {author && <meta name="twitter:creator" content={author} />}
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={description} />
+      {article && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )}
+      {article && modifiedTime && (
+        <meta property="article:modified_time" content={modifiedTime} />
+      )}
+      {article &&
+        author &&
+        visibleTags?.map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
+      {article && author && <meta property="article:author" content={author} />}
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {jsonLd && <JsonLd data={jsonLd} />}
       {children}
     </>
   );

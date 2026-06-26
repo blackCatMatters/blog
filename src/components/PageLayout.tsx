@@ -6,43 +6,50 @@ import { PageFooter } from './PageFooter';
 interface PageLayoutProps {
   image?: IGatsbyImageData | null;
   title?: string;
+  heroSize?: 'default' | 'large' | 'none';
 }
 
 export const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
   children,
   image,
   title,
+  heroSize = 'default',
 }) => {
   const heroImage = image ? getImage(image) : null;
+  const showHero = heroSize !== 'none' && heroImage;
 
   return (
-    <main className="min-h-screen bg-white font-sans font-light text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      <PageHeader></PageHeader>
-      {heroImage && (
-        <div className="relative mb-12 h-48">
+    <div className="flex min-h-screen flex-col">
+      <PageHeader />
+      {showHero && (
+        <div
+          className={[
+            'relative w-full overflow-hidden',
+            heroSize === 'large' ? 'h-64 sm:h-80' : 'h-44 sm:h-56',
+          ].join(' ')}
+        >
           <GatsbyImage
             image={heroImage}
-            alt={title || ''}
-            className="absolute inset-0 h-full w-full"
+            alt={title || 'Page hero image'}
+            className="h-full w-full"
             objectFit="cover"
             loading="eager"
           />
           {title && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative z-20 mx-auto max-w-5xl">
-                <h1 className="text-4xl font-bold text-white sm:text-5xl">
+            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent">
+              <div className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
+                <h1 className="font-serif text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                   {title}
                 </h1>
               </div>
             </div>
           )}
-          <div className="absolute inset-0 z-10 bg-gray-900 opacity-30" />
         </div>
       )}
-      <div className="mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
         {children}
-      </div>
+      </main>
       <PageFooter />
-    </main>
+    </div>
   );
 };

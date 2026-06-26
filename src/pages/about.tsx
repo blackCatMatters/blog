@@ -1,8 +1,8 @@
 import { graphql, HeadFC, PageProps } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';
-import { PageLayout } from '../components/PageLayout';
 import { CustomHead } from '../components/CustomHead';
+import { PageLayout } from '../components/PageLayout';
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
   const profileImage = data.profileImage
@@ -14,34 +14,40 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
     : null;
 
   return (
-    <PageLayout image={headerImage} title="">
-      <div className="container mx-auto px-4 lg:px-0">
-        <h1 className="my-6 text-center text-3xl font-bold lg:text-4xl">
-          About the team
-        </h1>
-        <span className="text-lg">
-          Welcome to our blog's "About" page! We are glad you are here. This
-          page is all about us, the people behind the blog. We are passionate
-          about sharing our knowledge, opinions, and experiences with the world,
-          and we hope you find our content informative and enjoyable.
-        </span>
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+    <PageLayout image={headerImage} title="About" heroSize="default">
+      <div className="mx-auto max-w-3xl">
+        <p className="text-lg leading-relaxed text-stone-600 dark:text-stone-300">
+          Hi, I&apos;m Aude — a web developer, freelancer, and the person behind
+          BlackCatMatters. I write about the parts of tech work that textbooks
+          skip: changing careers, preparing for interviews, choosing tools, and
+          building a sustainable practice as a woman in tech.
+        </p>
+
+        <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-start">
           {profileImage && (
-            <div className="w-full sm:w-1/5">
+            <div className="mx-auto w-48 shrink-0 overflow-hidden rounded-2xl border border-stone-200 shadow-sm dark:border-stone-800 sm:mx-0">
               <GatsbyImage
                 image={profileImage}
-                alt="My Profile Image"
+                alt="Portrait of Aude Falco"
                 className="w-full"
               />
             </div>
           )}
-          <div className="flex-1 text-lg">
-            Meet Aude, the tech enthusiast behind our Javascript blog. With over
-            a 5 years of experience in web development, Aude has become a
-            seasoned expert in all things Javascript. Her passion for coding and
-            her love of sharing knowledge have led her to create a blog that
-            aims to help people master the art of Javascript and create amazing
-            web experiences.
+          <div className="space-y-4 text-base leading-relaxed text-stone-700 dark:text-stone-300">
+            <p>
+              I&apos;ve spent years building web applications across frontend
+              and backend, working with teams and clients, and learning what it
+              takes to grow as an engineer without burning out.
+            </p>
+            <p>
+              This blog is where I share those lessons openly — the wins, the
+              pivots, and the practical details that helped me move forward.
+            </p>
+            <p>
+              When I&apos;m not writing, I&apos;m usually building software,
+              refining my workflow, or exploring better ways to work remotely
+              from France with clients around the world.
+            </p>
           </div>
         </div>
       </div>
@@ -51,29 +57,36 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQuery>> = ({ data }) => {
 
 export default AboutPage;
 
-// This query will get run when the page is built, and the data will be passed in
-// as the `data` property to the exported `AboutPage` above.
-export const pageQuery = graphql`
+export const query = graphql`
   query AboutPage {
     profileImage: file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(
+          layout: CONSTRAINED
+          width: 400
+          quality: 90
+          placeholder: BLURRED
+        )
       }
     }
     headerImage: file(relativePath: { eq: "header.jpg" }) {
       childImageSharp {
-        gatsbyImageData(quality: 90, width: 200, layout: CONSTRAINED)
+        gatsbyImageData(quality: 90, width: 1920, layout: CONSTRAINED)
       }
     }
   }
 `;
 
 export const Head: HeadFC = () => (
-  <>
-    <title>About Page</title>
-    <CustomHead
-      title="Home | My Gatsby Blog"
-      description="This is the home page to my blog. You should write a better description."
-    />
-  </>
+  <CustomHead
+    title="About | BlackCatMatters"
+    description="Meet Aude Falco — web developer, freelancer, and author of BlackCatMatters, writing about tech careers and software craft."
+    jsonLd={{
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Aude Falco',
+      url: 'https://blog.blackcatmatters.com/about',
+      jobTitle: 'Web Developer',
+    }}
+  />
 );

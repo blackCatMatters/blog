@@ -21,13 +21,14 @@ export const DarkModeToggle: React.FC = () => {
 
   return (
     <button
+      type="button"
       onClick={() => setIsDark(!isDark)}
-      className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-      aria-label="Toggle dark mode"
+      className="rounded-md p-2 text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDark ? (
         <svg
-          className="h-6 w-6 text-gray-100"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -41,7 +42,7 @@ export const DarkModeToggle: React.FC = () => {
         </svg>
       ) : (
         <svg
-          className="h-6 w-6 text-gray-900"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

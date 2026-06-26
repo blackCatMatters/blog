@@ -1,36 +1,37 @@
 import type { GatsbyConfig } from 'gatsby';
 
+const siteUrl = 'https://blog.blackcatmatters.com';
+
 const config: GatsbyConfig = {
-  // pathPrefix: '/blog',
   siteMetadata: {
-    title: `A Blog by a woman in tech`,
-    siteUrl: `https://blog.blackcatmatters.com`,
-    author: 'AF',
+    title: 'BlackCatMatters',
+    siteUrl,
+    author: 'Aude Falco',
     description:
-      'Follow my journey as a woman in tech and insights on web development, design, and more.',
-    image: 'default.jpg',
+      'Stories from a woman in tech — web development, freelancing, career growth, and building software with clarity.',
+    image: '/icons/icon-512x512.png',
     navigation: [
-      {
-        name: 'About',
-        path: '/about',
-      },
-      {
-        name: 'Article',
-        path: '/article',
-      },
+      { name: 'About', path: '/about' },
+      { name: 'Articles', path: '/article' },
     ],
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
-  graphqlTypegen: true,
+  graphqlTypegen: {
+    generateOnBuild: true,
+    typesOutputPath: './src/gatsby-types.d.ts',
+  },
   plugins: [
-    'gatsby-plugin-emotion',
     'gatsby-plugin-image',
+    'gatsby-plugin-postcss',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        name: 'BlackCatMatters Blog',
+        short_name: 'BCM Blog',
+        start_url: '/',
+        background_color: '#fafaf9',
+        theme_color: '#0d9488',
+        display: 'minimal-ui',
         icon: 'src/images/icon.png',
       },
     },
@@ -43,10 +44,10 @@ const config: GatsbyConfig = {
       __key: 'images',
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
-        path: `./src/content`,
+        name: 'content',
+        path: './src/content',
       },
     },
     {
@@ -70,25 +71,89 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        name: 'article',
-        path: './src/content',
+        host: siteUrl,
+        sitemap: `${siteUrl}/sitemap-index.xml`,
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: 'gatsby-plugin-feed',
       options: {
-        host: 'https://blog.blackcatmatters.com',
-        sitemap: 'https://blog.blackcatmatters.com/sitemap-index.xml',
-        policy: [{ userAgent: '*', allow: '/' }],
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                author
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({
+              query: { site, allMdx },
+            }: {
+              query: {
+                site: {
+                  siteMetadata: {
+                    siteUrl: string;
+                  };
+                };
+                allMdx: {
+                  edges: Array<{
+                    node: {
+                      excerpt: string;
+                      frontmatter: {
+                        title: string;
+                        description?: string;
+                        slug: string;
+                        date: string;
+                      };
+                    };
+                  }>;
+                };
+              };
+            }) =>
+              allMdx.edges.map(({ node }) => ({
+                title: node.frontmatter.title,
+                description: node.frontmatter.description || node.excerpt,
+                date: node.frontmatter.date,
+                url: `${site.siteMetadata.siteUrl}/article/${node.frontmatter.slug}`,
+                guid: `${site.siteMetadata.siteUrl}/article/${node.frontmatter.slug}`,
+              })),
+            query: `
+              {
+                allMdx(sort: { frontmatter: { date: DESC } }, limit: 100) {
+                  edges {
+                    node {
+                      excerpt(pruneLength: 280)
+                      frontmatter {
+                        title
+                        description
+                        slug
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: 'BlackCatMatters Blog',
+          },
+        ],
       },
     },
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-offline',
       options: {
-        precachePages: [`/`, `/blog/*`],
+        precachePages: ['/', '/about', '/article'],
       },
     },
   ],

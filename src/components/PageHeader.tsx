@@ -1,87 +1,95 @@
 import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
 import { StaticImage } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { DarkModeToggle } from './DarkModeToggle';
 
-export const PageHeader: React.FC<React.PropsWithChildren> = ({ children }) => {
+const navLinkClass = (isActive: boolean) =>
+  [
+    'rounded-md px-3 py-2 text-sm font-medium transition',
+    isActive
+      ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-200'
+      : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-50',
+  ].join(' ');
+
+export const PageHeader: React.FC = () => {
   const { title, navigation } = useSiteMetadata();
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
-    <header className="bg-white shadow-sm dark:bg-gray-900 dark:shadow-gray-800">
-      <div className="absolute left-1/2 right-auto top-12 -translate-x-1/2 sm:left-auto sm:right-4 sm:top-4 sm:translate-x-0">
-        <DarkModeToggle />
-      </div>
-      <div className="container mx-auto flex max-w-5xl items-center justify-between py-6">
+    <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/90 backdrop-blur dark:border-stone-800 dark:bg-stone-950/90">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         {title && (
-          <Link
-            to="/"
-            className="flex items-center gap-2 px-4 sm:w-auto sm:pb-0 lg:px-0"
-          >
+          <Link to="/" className="flex min-w-0 items-center gap-3">
             <StaticImage
               src="../images/icon.png"
-              alt={title}
+              alt="BlackCatMatters logo"
               layout="fixed"
-              height={35}
-              width={35}
+              height={36}
+              width={36}
+              className="rounded-lg"
             />
-            <span className="whitespace-nowrap text-xl font-bold uppercase">
+            <span className="truncate font-serif text-lg font-semibold text-stone-900 dark:text-stone-50 sm:text-xl">
               {title}
             </span>
           </Link>
         )}
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex">
-          <ul className="flex space-x-4">
+        <div className="flex items-center gap-2">
+          <nav className="hidden items-center gap-1 md:flex">
             {navigation?.map(
               (nav) =>
                 nav?.path && (
-                  <li key={nav.path}>
-                    <Link
-                      to={nav.path}
-                      className="hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
-                    >
-                      {nav.name}
-                    </Link>
-                  </li>
+                  <Link
+                    key={nav.path}
+                    to={nav.path}
+                    className={navLinkClass(pathname === nav.path)}
+                  >
+                    {nav.name}
+                  </Link>
                 ),
             )}
-          </ul>
-        </nav>
+          </nav>
 
-        {/* Mobile Burger Menu */}
-        <button
-          className="block focus:outline-none md:hidden"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          {isMenuOpen ? (
-            <span className="text-2xl font-bold">x</span>
-          ) : (
-            <span className="text-2xl">☰</span>
-          )}
-        </button>
+          <DarkModeToggle />
 
-        {children}
+          <button
+            type="button"
+            className="rounded-md p-2 text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800 md:hidden"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle navigation menu"
+          >
+            <svg
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              {isMenuOpen ? (
+                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (
-        <nav className="bg-white shadow-lg dark:bg-gray-900 md:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-4">
+        <nav className="border-t border-stone-200 px-4 py-3 dark:border-stone-800 md:hidden">
+          <ul className="flex flex-col gap-1">
             {navigation?.map(
               (nav) =>
                 nav?.path && (
                   <li key={nav.path}>
                     <Link
                       to={nav.path}
-                      className="hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
-                      onClick={toggleMenu}
+                      className={navLinkClass(pathname === nav.path)}
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {nav.name}
                     </Link>
